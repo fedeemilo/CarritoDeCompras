@@ -15,4 +15,5 @@ public interface UsuarioService {
     String actualizarUsuario(Usuario usuario, Long usuarioId) throws DataNotFoundException;
 
     String borrarUsuario(Long usuarioId) throws DataNotFoundException;
+
 }

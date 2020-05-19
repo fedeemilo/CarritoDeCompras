@@ -26,6 +26,9 @@ public class Usuario {
     @Column(name = "DNI_USUARIO")
     private Long dniUsuario;
 
+    @Column(name = "TIPO_USUARIO")
+    private Boolean esVip;
+  
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ProductoOrden> ordenes;
 
@@ -60,5 +63,15 @@ public class Usuario {
     public void setOrdenes(List<ProductoOrden> ordenes) {
         this.ordenes = ordenes;
     }
+
+
+    public Boolean getEsVip() {
+        return this.esVip;
+    }
+
+    public void setEsVip(Boolean esVip) {
+        this.esVip = esVip;
+    }
+
    
 } 

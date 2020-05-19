@@ -23,4 +23,30 @@ public class Carrito {
 
     @Column(name = "USUARIO_DNI")
     private Long usuarioDni;
+
+    public Long getCarritoId() {
+        return this.carritoId;
+    }
+
+    public void setCarritoId(Long carritoId) {
+        this.carritoId = carritoId;
+    }
+
+    public List<String> getProductoId() {
+        return this.productoId;
+    }
+
+    public void setProductoId(List<String> productoId) {
+        this.productoId = productoId;
+    }
+
+    public Long getUsuarioDni() {
+        return this.usuarioDni;
+    }
+
+    public void setUsuarioDni(Long usuarioDni) {
+        this.usuarioDni = usuarioDni;
+    }
+
+
 }

@@ -31,6 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			Usuario user = new Usuario();
 			user.setDniUsuario(usuario.getDniUsuario());
 			user.setNombreUsuario(usuario.getNombreUsuario());
+			user.setEsVip(usuario.getEsVip());
 			usuarioRepository.save(user);
 			return "SUCCESS";
 		} else {
@@ -48,6 +49,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			Usuario usuarioActualizado = usuarioDB.get();
 			usuarioActualizado.setDniUsuario(usuario.getDniUsuario());
 			usuarioActualizado.setNombreUsuario(usuario.getNombreUsuario());
+			usuarioActualizado.setEsVip(usuario.getEsVip());
 			usuarioRepository.save(usuarioActualizado);
 
             return "USUARIO ACTUALIZADO CON ÉXITO!";
@@ -73,6 +75,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 		}
 	}
+
 
     
 }
