@@ -1,15 +1,11 @@
 package com.fedemilo.carritodecompras.model;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Table(name = "USUARIO")
@@ -28,9 +24,6 @@ public class Usuario {
 
     @Column(name = "TIPO_USUARIO")
     private Boolean esVip;
-  
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ProductoOrden> ordenes;
 
     public Long getUsuarioId() {
         return this.usuarioId;
@@ -54,14 +47,6 @@ public class Usuario {
 
     public void setDniUsuario(Long dniUsuario) {
         this.dniUsuario = dniUsuario;
-    }
-
-    public List<ProductoOrden> getOrdenes() {
-        return this.ordenes;
-    }
-
-    public void setOrdenes(List<ProductoOrden> ordenes) {
-        this.ordenes = ordenes;
     }
 
 

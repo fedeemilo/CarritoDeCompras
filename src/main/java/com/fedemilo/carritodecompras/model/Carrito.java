@@ -2,12 +2,14 @@ package com.fedemilo.carritodecompras.model;
 
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Table(name = "CARRITO")
@@ -18,7 +20,10 @@ public class Carrito {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long carritoId;
 
+  
     @ElementCollection
+    @CollectionTable(name = "LISTA_IDS_PRODUCTOS")
+    @OrderColumn
     private List<Long> productoId;
 
     @Column(name = "USUARIO_DNI")

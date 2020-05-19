@@ -1,16 +1,14 @@
 package com.fedemilo.carritodecompras.model;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-import javax.persistence.CascadeType;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Table(name = "PRODUCTOS")
@@ -33,10 +31,6 @@ public class Producto {
 
     @Column(name = "CANTIDAD_PRODUCTO")
     private Integer cantidad;
-
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ProductoOrden> ordenes;
 
 
     public Long getId() {

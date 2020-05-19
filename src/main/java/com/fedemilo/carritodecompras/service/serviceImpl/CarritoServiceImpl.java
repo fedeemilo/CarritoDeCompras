@@ -1,6 +1,5 @@
 package com.fedemilo.carritodecompras.service.serviceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,9 +31,9 @@ public class CarritoServiceImpl implements CarritoService {
 	@Override
 	public String crearCarrito(Long usuarioDni) throws DuplicateElementException {
 
-		Usuario usuarioExiste = usuarioRepository.findByDniUsuario(usuarioDni);
+		Usuario usuarioDB = usuarioRepository.findByDniUsuario(usuarioDni);
 
-		if (usuarioExiste.getDniUsuario() == usuarioDni) {
+		if (usuarioDB != null) {
 			
 			Carrito nuevoCarrito = new Carrito();
 			nuevoCarrito.setUsuarioDni(usuarioDni);
@@ -59,11 +58,12 @@ public class CarritoServiceImpl implements CarritoService {
 		
 		Optional<Carrito> carritoDB = carritoRepository.findById(carritoId);
 		Optional<Producto> productoDB = productoRepository.findById(productoId);
-		List<Long> prodIDs = carritoDB.get().getProductoId();
+
 
 		if (carritoDB.isPresent() && productoDB.isPresent()) {
-			prodIDs.add(productoId);
-			carritoDB.get().setProductoId(prodIDs);
+
+			carritoDB.get().getProductoId().add(productoDB.get().getId());
+			System.out.println(carritoDB.get().getProductoId());
 			return carritoDB.get();
 		} else {
 			throw new DataNotFoundException("No se encuentra");
