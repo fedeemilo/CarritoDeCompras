@@ -26,7 +26,7 @@ public class CarritoServiceImpl implements CarritoService {
 
 		Usuario usuarioExiste = usuarioRepository.findByDniUsuario(usuarioDni);
 
-		if (usuarioExiste == null) {
+		if (usuarioExiste.getDniUsuario() == usuarioDni) {
 			
 			Carrito nuevoCarrito = new Carrito();
 			nuevoCarrito.setUsuarioDni(usuarioDni);
