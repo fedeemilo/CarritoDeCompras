@@ -2,6 +2,7 @@ package com.fedemilo.carritodecompras.service;
 
 import java.util.List;
 
+import com.fedemilo.carritodecompras.exceptions.DataNotFoundException;
 import com.fedemilo.carritodecompras.exceptions.DuplicateElementException;
 import com.fedemilo.carritodecompras.model.Carrito;
 
@@ -9,7 +10,7 @@ public interface CarritoService {
 
     String crearCarrito(Long usuarioDni) throws DuplicateElementException;
     
-    List<Carrito> agregarProductoAlCarrito(List<Carrito> carritos);
+    Carrito agregarProductoAlCarrito(Long productoId, Long carritoId) throws DataNotFoundException;
 
     Carrito actualizarCarrito(Carrito carrito, Long carritoId);
 

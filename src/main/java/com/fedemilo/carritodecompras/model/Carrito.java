@@ -19,7 +19,7 @@ public class Carrito {
     private Long carritoId;
 
     @ElementCollection
-    private List<String> productoId;
+    private List<Long> productoId;
 
     @Column(name = "USUARIO_DNI")
     private Long usuarioDni;
@@ -32,11 +32,11 @@ public class Carrito {
         this.carritoId = carritoId;
     }
 
-    public List<String> getProductoId() {
+    public List<Long> getProductoId() {
         return this.productoId;
     }
 
-    public void setProductoId(List<String> productoId) {
+    public void setProductoId(List<Long> productoId) {
         this.productoId = productoId;
     }
 
