@@ -1,15 +1,15 @@
 package com.fedemilo.carritodecompras.model;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Table(name = "CARRITO")
@@ -22,26 +22,34 @@ public class Carrito {
 
   
     @ElementCollection
-    @CollectionTable(name = "LISTA_IDS_PRODUCTOS")
-    @OrderColumn
-    private List<Long> productoId;
+    private Set<Long> productoId = new HashSet<>();
 
     @Column(name = "USUARIO_DNI")
     private Long usuarioDni;
+
+    private BigDecimal estadoTotal;
 
     public Long getCarritoId() {
         return this.carritoId;
     }
 
-    public void setCarritoId(Long carritoId) {
+    public BigDecimal getEstadoTotal() {
+		return estadoTotal;
+	}
+
+	public void setEstadoTotal(BigDecimal estadoTotal) {
+		this.estadoTotal = estadoTotal;
+	}
+
+	public void setCarritoId(Long carritoId) {
         this.carritoId = carritoId;
     }
 
-    public List<Long> getProductoId() {
+    public Set<Long> getProductoId() {
         return this.productoId;
     }
 
-    public void setProductoId(List<Long> productoId) {
+    public void setProductoId(Set<Long> productoId) {
         this.productoId = productoId;
     }
 

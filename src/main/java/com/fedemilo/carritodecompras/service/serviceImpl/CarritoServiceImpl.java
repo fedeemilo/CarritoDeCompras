@@ -1,5 +1,6 @@
 package com.fedemilo.carritodecompras.service.serviceImpl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,7 @@ public class CarritoServiceImpl implements CarritoService {
 			
 			Carrito nuevoCarrito = new Carrito();
 			nuevoCarrito.setUsuarioDni(usuarioDni);
+			nuevoCarrito.setEstadoTotal(new BigDecimal(0));
 			carritoRepository.save(nuevoCarrito);
 			return "CARRITO CREADO CON ÉXITO";
 		} else {
@@ -54,16 +56,19 @@ public class CarritoServiceImpl implements CarritoService {
 	}
 
 	@Override
-	public Carrito agregarProductoAlCarrito(Long productoId, Long carritoId) throws DataNotFoundException{
+	public Carrito agregarProductoAlCarrito(Long productoId, Long carritoId) throws DataNotFoundException {
 		
 		Optional<Carrito> carritoDB = carritoRepository.findById(carritoId);
 		Optional<Producto> productoDB = productoRepository.findById(productoId);
-
+		BigDecimal total;
+		BigDecimal calculo;
 
 		if (carritoDB.isPresent() && productoDB.isPresent()) {
-
-			carritoDB.get().getProductoId().add(productoDB.get().getId());
-			System.out.println(carritoDB.get().getProductoId());
+			calculo = productoDB.get().getPrecio().multiply(new BigDecimal(productoDB.get().getCantidad()));
+			total = carritoDB.get().getEstadoTotal().add(calculo);
+			carritoDB.get().setEstadoTotal(total);
+			carritoDB.get().getProductoId().add(productoId);
+			carritoRepository.save(carritoDB.get());
 			return carritoDB.get();
 		} else {
 			throw new DataNotFoundException("No se encuentra");
