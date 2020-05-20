@@ -8,7 +8,7 @@ import com.fedemilo.carritodecompras.model.Carrito;
 
 public interface CarritoService {
 
-    String crearCarrito(Long usuarioDni) throws DuplicateElementException;
+    Long crearCarrito(Long usuarioDni) throws DuplicateElementException;
     
     Carrito agregarProductoAlCarrito(Long productoId, Long carritoId) throws DataNotFoundException;
 

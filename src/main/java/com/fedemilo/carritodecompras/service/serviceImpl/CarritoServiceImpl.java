@@ -1,8 +1,11 @@
 package com.fedemilo.carritodecompras.service.serviceImpl;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Date;
 
 import com.fedemilo.carritodecompras.exceptions.DataNotFoundException;
 import com.fedemilo.carritodecompras.exceptions.DuplicateElementException;
@@ -30,17 +33,33 @@ public class CarritoServiceImpl implements CarritoService {
 	ProductoRepository productoRepository;
 
 	@Override
-	public String crearCarrito(Long usuarioDni) throws DuplicateElementException {
+	public Long crearCarrito(Long usuarioDni) throws DuplicateElementException {
+
+		// El día 15 de cada mes es una fecha de promoción
+		LocalDate fechaActual = LocalDate.now();
+
 
 		Usuario usuarioDB = usuarioRepository.findByDniUsuario(usuarioDni);
 
 		if (usuarioDB != null) {
 			
 			Carrito nuevoCarrito = new Carrito();
+
+			if (fechaActual.getDayOfMonth() == 15) {
+				nuevoCarrito.setTipoCarrito("CARRITO_FECHA_PROMO");
+			} else {
+				if (usuarioDB.getEsVip() == true) {
+					nuevoCarrito.setTipoCarrito("CARRITO_VIP");
+				} else {
+					nuevoCarrito.setTipoCarrito("CARRITO_NORMAL");
+				} 
+				
+			}
+		
 			nuevoCarrito.setUsuarioDni(usuarioDni);
 			nuevoCarrito.setEstadoTotal(new BigDecimal(0));
 			carritoRepository.save(nuevoCarrito);
-			return "CARRITO CREADO CON ÉXITO";
+			return nuevoCarrito.getCarritoId();
 		} else {
 			throw new DuplicateElementException
 			("El usuario con DNI " + usuarioDni + " no existe en la base de datos");

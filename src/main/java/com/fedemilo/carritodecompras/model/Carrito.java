@@ -29,11 +29,21 @@ public class Carrito {
 
     private BigDecimal estadoTotal;
 
+    private String tipoCarrito;
+
     public Long getCarritoId() {
         return this.carritoId;
     }
 
-    public BigDecimal getEstadoTotal() {
+    public String getTipoCarrito() {
+		return tipoCarrito;
+	}
+
+	public void setTipoCarrito(String tipoCarrito) {
+		this.tipoCarrito = tipoCarrito;
+	}
+
+	public BigDecimal getEstadoTotal() {
 		return estadoTotal;
 	}
 

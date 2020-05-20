@@ -25,7 +25,7 @@ public class CarritoController {
 
     @PostMapping("/crearCarrito/{usuarioDni}")
     public ResponseEntity<?> crearCarrito(@PathVariable("usuarioDni") Long usuarioDni) throws DuplicateElementException {
-        return new ResponseEntity<SuccessResponseDTO>(new SuccessResponseDTO(carritoService.crearCarrito(usuarioDni)), HttpStatus.CREATED);
+        return new ResponseEntity<Long>(carritoService.crearCarrito(usuarioDni), HttpStatus.CREATED);
     }
 
     @GetMapping("/obtenerCarritos")
