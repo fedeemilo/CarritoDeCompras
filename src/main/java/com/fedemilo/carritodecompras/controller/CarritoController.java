@@ -10,6 +10,7 @@ import com.fedemilo.carritodecompras.service.CarritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +36,11 @@ public class CarritoController {
     @PutMapping("/agregarProducto/{productoId}/{carritoId}")
     public ResponseEntity<Carrito> agregarProductoAlCarrito(@PathVariable("productoId") Long productoId, @PathVariable("carritoId") Long carritoId) throws DataNotFoundException {
         return new ResponseEntity<Carrito>(carritoService.agregarProductoAlCarrito(productoId, carritoId), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/eliminarCarrito/{carritoId}")
+    public ResponseEntity<?> borrarCarritoPorId(@PathVariable("carritoId") Long carritoId) throws DataNotFoundException {
+        return new ResponseEntity<SuccessResponseDTO>(new SuccessResponseDTO(carritoService.borrarCarritoPorId(carritoId)), HttpStatus.OK);
     }
 
 }

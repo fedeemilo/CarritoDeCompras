@@ -78,8 +78,8 @@ public class ProductoServiceImpl implements ProductoService {
                 Optional<Producto> producto = productoRepository.findById(productoId);
 
                 if (producto.isPresent()) {
-                productoRepository.delete(producto.get());
-                return "PRODUCTO ELIMINADO CON ÉXITO.";
+                    productoRepository.delete(producto.get());
+                    return "PRODUCTO ELIMINADO CON ÉXITO.";
                 }
 
                 return "EL PRODUCTO NO SE ENCUENTRA";

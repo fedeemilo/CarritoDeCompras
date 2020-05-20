@@ -12,10 +12,8 @@ public interface CarritoService {
     
     Carrito agregarProductoAlCarrito(Long productoId, Long carritoId) throws DataNotFoundException;
 
-    Carrito actualizarCarrito(Carrito carrito, Long carritoId);
-
     List<Carrito> obtenerTodosLosCarritos();
 
-    String borrarCarritoPorId(Long carritoId);
+    String borrarCarritoPorId(Long carritoId) throws DataNotFoundException;
 
 }

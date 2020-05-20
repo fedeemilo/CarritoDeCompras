@@ -76,18 +76,18 @@ public class CarritoServiceImpl implements CarritoService {
 
 
 	}
-
-	@Override
-	public Carrito actualizarCarrito(Carrito carrito, Long carritoId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 	@Override
-	public String borrarCarritoPorId(Long carritoId) {
-		// TODO Auto-generated method stub
-		return null;
+	public String borrarCarritoPorId(Long carritoId) throws DataNotFoundException {
+		
+		Optional<Carrito> carritoDB = carritoRepository.findById(carritoId);
+
+		if (carritoDB.isPresent()) {
+			carritoRepository.delete(carritoDB.get());
+			return "CARRITO ELIMINADO CON ÉXITO.";
+		} else {
+			throw new DataNotFoundException("El carrito con ID " + carritoId + " no se encuentra en la base de datos.");
+		}
 	}
 
 	
