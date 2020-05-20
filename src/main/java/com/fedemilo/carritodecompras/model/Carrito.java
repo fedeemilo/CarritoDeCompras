@@ -31,11 +31,21 @@ public class Carrito {
 
     private String tipoCarrito;
 
+    private Integer cantidadProductos;
+
     public Long getCarritoId() {
         return this.carritoId;
     }
 
-    public String getTipoCarrito() {
+    public Integer getCantidadProductos() {
+		return cantidadProductos;
+	}
+
+	public void setCantidadProductos(Integer cantidadProductos) {
+		this.cantidadProductos = cantidadProductos;
+	}
+
+	public String getTipoCarrito() {
 		return tipoCarrito;
 	}
 

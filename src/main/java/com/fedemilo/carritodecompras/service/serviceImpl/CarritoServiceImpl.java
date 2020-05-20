@@ -38,7 +38,6 @@ public class CarritoServiceImpl implements CarritoService {
 		// El día 15 de cada mes es una fecha de promoción
 		LocalDate fechaActual = LocalDate.now();
 
-
 		Usuario usuarioDB = usuarioRepository.findByDniUsuario(usuarioDni);
 
 		if (usuarioDB != null) {
@@ -55,7 +54,7 @@ public class CarritoServiceImpl implements CarritoService {
 				} 
 				
 			}
-		
+			nuevoCarrito.setCantidadProductos(0);
 			nuevoCarrito.setUsuarioDni(usuarioDni);
 			nuevoCarrito.setEstadoTotal(new BigDecimal(0));
 			carritoRepository.save(nuevoCarrito);
@@ -81,10 +80,13 @@ public class CarritoServiceImpl implements CarritoService {
 		Optional<Producto> productoDB = productoRepository.findById(productoId);
 		BigDecimal total;
 		BigDecimal calculo;
-
+		Integer cantidadProductos = 0;
+		
 		if (carritoDB.isPresent() && productoDB.isPresent()) {
 			calculo = productoDB.get().getPrecio().multiply(new BigDecimal(productoDB.get().getCantidad()));
 			total = carritoDB.get().getEstadoTotal().add(calculo);
+			cantidadProductos = carritoDB.get().getCantidadProductos() + productoDB.get().getCantidad();
+			carritoDB.get().setCantidadProductos(cantidadProductos);
 			carritoDB.get().setEstadoTotal(total);
 			carritoDB.get().getProductoId().add(productoId);
 			carritoRepository.save(carritoDB.get());
@@ -107,6 +109,12 @@ public class CarritoServiceImpl implements CarritoService {
 		} else {
 			throw new DataNotFoundException("El carrito con ID " + carritoId + " no se encuentra en la base de datos.");
 		}
+	}
+
+	@Override
+	public Carrito eliminarProductoDelCarrito(Long productoId, Long carritoId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

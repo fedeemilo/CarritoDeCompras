@@ -33,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			user.setNombreUsuario(usuario.getNombreUsuario());
 			user.setEsVip(usuario.getEsVip());
 			usuarioRepository.save(user);
-			return "SUCCESS";
+			return "USUARIO CREADO CON ÉXITO!";
 		} else {
 			throw new DuplicateElementException("El usuario con username " + usuario.getNombreUsuario() + " ya existe.");
 		}
