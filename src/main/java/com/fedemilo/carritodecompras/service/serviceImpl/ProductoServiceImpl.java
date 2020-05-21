@@ -4,7 +4,6 @@ package com.fedemilo.carritodecompras.service.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
-import com.fedemilo.carritodecompras.dto.ProductoDTO;
 import com.fedemilo.carritodecompras.model.Producto;
 import com.fedemilo.carritodecompras.repository.ProductoRepository;
 import com.fedemilo.carritodecompras.service.ProductoService;
@@ -54,7 +53,7 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
-	public String actualizarProducto(ProductoDTO dto, Long productoId) {
+	public String actualizarProducto(Producto dto, Long productoId) {
         
                 Optional<Producto> producto = productoRepository.findById(productoId);
 

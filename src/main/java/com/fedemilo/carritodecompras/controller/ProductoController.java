@@ -2,7 +2,6 @@ package com.fedemilo.carritodecompras.controller;
 
 import java.util.List;
 
-import com.fedemilo.carritodecompras.dto.ProductoDTO;
 import com.fedemilo.carritodecompras.dto.SuccessResponseDTO;
 import com.fedemilo.carritodecompras.model.Producto;
 import com.fedemilo.carritodecompras.service.ProductoService;
@@ -46,7 +45,7 @@ public class ProductoController {
     }
 
     @PutMapping("/actualizarProducto/{productoId}")
-    public ResponseEntity<?> actualizarProducto(@RequestBody ProductoDTO dto, @PathVariable Long productoId) {
+    public ResponseEntity<?> actualizarProducto(@RequestBody Producto dto, @PathVariable Long productoId) {
         return new ResponseEntity<SuccessResponseDTO>(new SuccessResponseDTO(productoService.actualizarProducto(dto, productoId)), HttpStatus.ACCEPTED);
     }
 

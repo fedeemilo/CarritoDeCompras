@@ -2,7 +2,6 @@ package com.fedemilo.carritodecompras.service;
 
 import java.util.List;
 
-import com.fedemilo.carritodecompras.dto.ProductoDTO;
 import com.fedemilo.carritodecompras.model.Producto;
 
 
@@ -17,7 +16,7 @@ public interface ProductoService {
 
     List<Producto> obtenerProductos();
 
-    String actualizarProducto(ProductoDTO dto, Long productoId);
+    String actualizarProducto(Producto dto, Long productoId);
 
     String borrarProducto(Long productoId);
 

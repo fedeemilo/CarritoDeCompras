@@ -33,11 +33,21 @@ public class Carrito {
 
     private Integer cantidadProductos;
 
+    private Boolean estadoPagado;
+
     public Long getCarritoId() {
         return this.carritoId;
     }
 
-    public Integer getCantidadProductos() {
+    public Boolean getEstadoPagado() {
+		return estadoPagado;
+	}
+
+	public void setEstadoPagado(Boolean estadoPagado) {
+		this.estadoPagado = estadoPagado;
+	}
+
+	public Integer getCantidadProductos() {
 		return cantidadProductos;
 	}
 

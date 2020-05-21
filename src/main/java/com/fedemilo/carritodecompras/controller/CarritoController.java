@@ -1,5 +1,6 @@
 package com.fedemilo.carritodecompras.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.fedemilo.carritodecompras.dto.SuccessResponseDTO;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -33,14 +35,35 @@ public class CarritoController {
         return new ResponseEntity<List<Carrito>>(carritoService.obtenerTodosLosCarritos(), HttpStatus.OK);
     }
 
-    @PutMapping("/agregarProducto/{productoId}/{carritoId}")
-    public ResponseEntity<Carrito> agregarProductoAlCarrito(@PathVariable("productoId") Long productoId, @PathVariable("carritoId") Long carritoId) throws DataNotFoundException {
+    @GetMapping("/consultarEstadoTotal/{carritoId}")
+    public ResponseEntity<BigDecimal> consultarEstadoTotal(@PathVariable("carritoId") Long carritoId) throws DataNotFoundException {
+        return new ResponseEntity<BigDecimal>(carritoService.consultarEstadoTotal(carritoId), HttpStatus.OK);
+    }
+
+    @GetMapping("calcularValorDelCarrito/{carritoId}")
+    public ResponseEntity<BigDecimal> calcularValorDelCarrito(@PathVariable Long carritoId) throws DataNotFoundException {
+        return new ResponseEntity<BigDecimal>(carritoService.calcularValorDelCarrito(carritoId), HttpStatus.OK);
+    }
+
+    @PutMapping("/agregarProducto/{carritoId}")
+    public ResponseEntity<Carrito> agregarProductoAlCarrito(@RequestParam Long productoId, @PathVariable("carritoId") Long carritoId) throws DataNotFoundException {
         return new ResponseEntity<Carrito>(carritoService.agregarProductoAlCarrito(productoId, carritoId), HttpStatus.OK);
+    }
+    
+    @PutMapping("/eliminarProdDelCarrito/{carritoId}")
+    public ResponseEntity<Carrito> eliminarProductoDelCarrito(@RequestParam Long productoId, @PathVariable("carritoId") Long  carritoId) throws DataNotFoundException {
+        return new ResponseEntity<Carrito>(carritoService.eliminarProductoDelCarrito(productoId, carritoId), HttpStatus.OK);
+    }
+
+    @PutMapping("/realizarPagoDelCarrito/{carritoId}")
+    public ResponseEntity<Carrito> realizarPagoDelCarrito(@PathVariable("carritoId") Long  carritoId) throws DataNotFoundException {
+        return new ResponseEntity<Carrito>(carritoService.realizarPagoDelCarrito(carritoId), HttpStatus.OK);
     }
 
     @DeleteMapping("/eliminarCarrito/{carritoId}")
     public ResponseEntity<?> borrarCarritoPorId(@PathVariable("carritoId") Long carritoId) throws DataNotFoundException {
         return new ResponseEntity<SuccessResponseDTO>(new SuccessResponseDTO(carritoService.borrarCarritoPorId(carritoId)), HttpStatus.OK);
     }
+
 
 }

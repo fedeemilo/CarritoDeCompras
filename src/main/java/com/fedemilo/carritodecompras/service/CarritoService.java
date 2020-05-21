@@ -1,5 +1,6 @@
 package com.fedemilo.carritodecompras.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.fedemilo.carritodecompras.exceptions.DataNotFoundException;
@@ -14,8 +15,16 @@ public interface CarritoService {
 
     List<Carrito> obtenerTodosLosCarritos();
 
-    Carrito eliminarProductoDelCarrito(Long productoId, Long carritoId);
+    Carrito eliminarProductoDelCarrito(Long productoId, Long carritoId) throws DataNotFoundException;
 
     String borrarCarritoPorId(Long carritoId) throws DataNotFoundException;
 
+    BigDecimal consultarEstadoTotal(Long carritoId) throws DataNotFoundException;
+
+    BigDecimal calcularValorDelCarrito(Long carritoId) throws DataNotFoundException;
+
+    BigDecimal devolverValorProductoMasBarato(Long carritoId) throws DataNotFoundException;
+
+    Carrito realizarPagoDelCarrito(Long carritoId) throws DataNotFoundException;
+    
 }
