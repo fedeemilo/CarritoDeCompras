@@ -70,4 +70,6 @@
 
     - Eliminar producto del carrito      -> PUT    /eliminarProdDelCarrito/{carritoId}?productoId={productoId}
 
+    - Realizar pago del carrito          -> PUT    /realizarPagoDelCarrito/{carritoId}
+
     - Eliminar carrito por ID            -> DELETE /eliminarCarrito/{carritoId}
